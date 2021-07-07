@@ -26,7 +26,7 @@ class NewsController extends Controller
     public function index(Request $request): \Illuminate\View\View
     {
         return view('news.list', [
-            'news' => $request->has('search')
+            'news' => $request->has('search') && !empty($request->input('search'))
                 ? $this->newsRepository->search($request->input('search'))
                 : $this->newsRepository->getRecents()
         ]);
