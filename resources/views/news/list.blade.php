@@ -14,7 +14,7 @@
         @empty
             @if (Request::get('search'))
             <div class="alert">
-                <p>Nenhuma resultado para: {{Request::get('search')}}</p>
+                <p>Não há resultado para: {{Request::get('search')}}</p>
             </div>
             @else
             <div class="alert">
