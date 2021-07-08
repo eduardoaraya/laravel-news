@@ -7,6 +7,7 @@
 @section('content')
 <div class="container">
     <div class="new-content">
+        <span class="category">{{$new->category->name}}</span>
         <div class="title">
             <h1>{{$new->title}}</h1>
             <span class="author">{{$new->author}}</span>

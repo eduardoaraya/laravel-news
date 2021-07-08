@@ -17,7 +17,7 @@ class News extends Model
         'description'
     ];
 
-    public function categorie()
+    public function category()
     {
         return $this->hasOne(Categories::class, 'id', 'category_id');
     }
