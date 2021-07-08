@@ -169,6 +169,7 @@ div.content {
     header.main-header nav ul li{
         padding: 10px;
         border-bottom: solid 1px #FFF;
+        width: 100%;
     }
     body.page {
         padding-top: 130px;
