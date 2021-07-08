@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\NewsRepository;
+use App\Repositories\CategoriesRepository;
 
 class NewsController extends Controller
 {
@@ -13,11 +14,20 @@ class NewsController extends Controller
     private $newsRepository;
 
     /**
-     * @param NewsRepository $newsRepository
+     * @var NewsRepository
      */
-    public function __construct(NewsRepository $newsRepository)
-    {
+    private $categoriesRepository;
+
+    /**
+     * @param NewsRepository $newsRepository
+     * @param CategoriesRepository $categoriesRepository
+     */
+    public function __construct(
+        NewsRepository $newsRepository,
+        CategoriesRepository $categoriesRepository
+    ) {
         $this->newsRepository = $newsRepository;
+        $this->categoriesRepository = $categoriesRepository;
     }
 
     /**
@@ -50,13 +60,14 @@ class NewsController extends Controller
     {
         $request->validate([
             'title' => 'required|unique:news|max:255',
+            'category_id' => 'required|exists:App\Models\Categories,id',
             'author' => 'required|max:255',
             'short_description' => 'required|max:255',
             'description' => 'required',
         ]);
         try {
             $this->newsRepository->create($request->all());
-            return redirect()->route('news.list');
+            return redirect()->back()->with('success', 'News created!');;
         } catch (\Exception $e) {
             return redirect()->back();
         }
@@ -67,6 +78,8 @@ class NewsController extends Controller
      */
     public function registerForm(): \Illuminate\View\View
     {
-        return view('news.register');
+        return view('news.register', [
+            'categories' => $this->categoriesRepository->getAll()
+        ]);
     }
 }

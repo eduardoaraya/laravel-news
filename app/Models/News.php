@@ -12,7 +12,13 @@ class News extends Model
     protected $fillable = [
         'title',
         'author',
+        'category_id',
         'short_description',
         'description'
     ];
+
+    public function categorie()
+    {
+        return $this->hasOne(Categories::class, 'id', 'category_id');
+    }
 }

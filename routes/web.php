@@ -17,3 +17,6 @@ Route::get('/', [App\Http\Controllers\NewsController::class, 'index'])->name('ne
 Route::get('/news/{id}', [App\Http\Controllers\NewsController::class, 'view'])->name('news.view');
 Route::get('/register', [App\Http\Controllers\NewsController::class, 'registerForm'])->name('news.register.form');
 Route::post('/register', [App\Http\Controllers\NewsController::class, 'register'])->name('news.register.form.submit');
+
+Route::post('/categories/register', [App\Http\Controllers\CategoriesController::class, 'register'])->name('categories.register.form.submit');
+

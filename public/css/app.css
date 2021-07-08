@@ -21,7 +21,7 @@ body.page {
     padding-top: 100px;
 }
 
-input.controll-input {
+input.controll-input, select.controll-input {
     padding: 5px;
     border: none;
     background-color: var(--light);
@@ -148,15 +148,21 @@ div.content {
 .alert {
     margin: 20px auto;
     padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 .alert.alert-danger {
-    border-radius: 5px;
-    font-weight: bold;
     color: #FFF;
     background-color: tomato;
 }
 
+.alert.alert-success {
+    border-radius: 5px;
+    font-weight: bold;
+    color: #222;
+    background-color: greenyellow;
+}
 
 @media (max-width: 600px) {
     header.main-header {

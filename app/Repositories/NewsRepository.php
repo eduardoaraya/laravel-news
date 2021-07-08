@@ -29,6 +29,9 @@ class NewsRepository
         return $this->model->where(function($query) use ($search) {
             $query->orWhere('title', 'like', "%$search%");
             $query->orWhere('author', 'like', "%$search%");
+            $query->orWhereHas('categorie', function ($subquery) use ($search) {
+                $subquery->where('name', 'like', "%$search%");
+            });
         })->get();
     }
 
