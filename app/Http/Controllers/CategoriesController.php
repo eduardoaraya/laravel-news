@@ -26,9 +26,7 @@ class CategoriesController extends Controller
      */
     public function register(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|unique:categories|max:255'
-        ]);
+        $request->validate(['name' => 'required|unique:categories|max:255']);
         try {
             $this->categoriesRepository->create($request->all());
             return redirect()->back()->with('success', 'Category created!');
